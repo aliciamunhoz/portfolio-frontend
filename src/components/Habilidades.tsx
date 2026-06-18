@@ -1,4 +1,3 @@
-// Habilidades reais (do currículo). O "tipo" é só a cor, estilo Pokémon.
 const HABILIDADES = [
   // Back-end
   { nome: 'Java', tipo: 'fire' },

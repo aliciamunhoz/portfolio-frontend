@@ -1,16 +1,11 @@
-// URL base da API. Usamos "/" porque o Vite faz proxy de "/api" para o
-// backend (veja vite.config.ts). Para apontar para outro servidor, defina
-// VITE_API_BASE_URL, ex: 'http://localhost:4000/'.
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/'
 
-// A API sempre responde neste formato: { status, message, data }
 interface ApiEnvelope<T> {
   status?: string
   message: string
   data?: T
 }
 
-// Erro personalizado que guarda o código HTTP (ex: 404, 500).
 export class ApiError extends Error {
   status: number
 
@@ -20,7 +15,6 @@ export class ApiError extends Error {
   }
 }
 
-// Função central que faz as chamadas e trata os erros.
 export async function request<T>(
   path: string,
   options?: RequestInit

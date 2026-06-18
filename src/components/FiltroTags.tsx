@@ -4,7 +4,6 @@ interface FiltroTagsProps {
   onSelecionar: (tag: string | null) => void
 }
 
-// Botões de filtro por tecnologia (estilo "tipo" de Pokémon).
 export function FiltroTags({ tags, tagAtiva, onSelecionar }: FiltroTagsProps) {
   return (
     <div className="filtro-tags">
