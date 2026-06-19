@@ -3,7 +3,6 @@ export function Contato() {
     <section id="contato" className="tela">
       <h2 className="titulo-secao">Contato</h2>
       <div className="contatos">
-        <a href="mailto:aliciamfc96@gmail.com">📧 Email</a>
         <a
           href="https://github.com/aliciamunhoz"
           target="_blank"

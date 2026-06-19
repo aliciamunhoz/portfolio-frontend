@@ -67,7 +67,7 @@ export function PortfolioPage() {
       </main>
 
       <footer className="rodape">
-        <p>Feito com 💙 estilo Pokédex</p>
+        <p>Feito com estilo Pokédex</p>
       </footer>
     </>
   )

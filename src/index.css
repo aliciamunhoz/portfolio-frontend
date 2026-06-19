@@ -26,7 +26,6 @@ body {
   padding-bottom: 40px;
 }
 
-/* ===================== TOPO (cara da Pokédex) ===================== */
 .topo {
   background: var(--vermelho);
   padding: 20px;
@@ -89,7 +88,6 @@ body {
   background: rgba(0, 0, 0, 0.2);
 }
 
-/* ===================== CONTEÚDO ===================== */
 main {
   max-width: 900px;
   margin: 24px auto;
@@ -106,7 +104,6 @@ main {
   transition: background 0.3s;
 }
 
-/* Sobre: foto + texto lado a lado */
 .sobre-conteudo {
   display: flex;
   gap: 28px;
@@ -114,8 +111,8 @@ main {
   flex-wrap: wrap;
 }
 .avatar {
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   object-fit: cover;
   border: 5px solid var(--vermelho);
@@ -165,7 +162,6 @@ main {
   border: 2px solid var(--borda);
 }
 
-/* ===================== FILTRO DE TAGS ===================== */
 .filtro-tags {
   display: flex;
   gap: 8px;
@@ -191,7 +187,6 @@ main {
   border-color: var(--vermelho);
 }
 
-/* ===================== PROJETOS ===================== */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -248,7 +243,6 @@ main {
   text-decoration: underline;
 }
 
-/* ===================== HABILIDADES ===================== */
 .habilidades {
   display: flex;
   gap: 12px;
@@ -292,7 +286,6 @@ main {
   background: #6d6d54;
 }
 
-/* ===================== CONTATO ===================== */
 .contatos {
   display: flex;
   gap: 16px;
@@ -311,7 +304,6 @@ main {
   background: #2c3aa0;
 }
 
-/* ===================== AVISOS / RODAPÉ ===================== */
 .aviso {
   color: var(--texto-suave);
 }
