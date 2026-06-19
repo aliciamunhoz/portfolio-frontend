@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react'
 import { Projeto } from '../types/projeto'
 import { listarProjetos } from '../services/projetoService'
 import { ApiError } from '../services/api'
-import { useTema } from '../hooks/useTema'
 import { Header } from '../components/Header'
 import { Sobre } from '../components/Sobre'
 import { FiltroTags } from '../components/FiltroTags'
@@ -11,15 +10,13 @@ import { Habilidades } from '../components/Habilidades'
 import { Contato } from '../components/Contato'
 
 export function PortfolioPage() {
-  const { tema, alternarTema } = useTema()
-
   const [projetos, setProjetos] = useState<Projeto[]>([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState<string | null>(null)
   const [tagAtiva, setTagAtiva] = useState<string | null>(null)
 
-  // Busca os projetos na API quando a página abre.
   useEffect(() => {
+    console.log('Iniciando busca de projetos...')
     listarProjetos()
       .then(setProjetos)
       .catch((e) => {
@@ -30,13 +27,11 @@ export function PortfolioPage() {
       .finally(() => setCarregando(false))
   }, [])
 
-  // Lista única de tags, para os botões de filtro.
   const tags = useMemo(() => {
     const todas = projetos.flatMap((p) => p.tags)
     return [...new Set(todas)].sort()
   }, [projetos])
 
-  // Projetos visíveis conforme o filtro selecionado.
   const projetosFiltrados = useMemo(() => {
     if (tagAtiva === null) return projetos
     return projetos.filter((p) => p.tags.includes(tagAtiva))
@@ -44,7 +39,7 @@ export function PortfolioPage() {
 
   return (
     <>
-      <Header tema={tema} onAlternarTema={alternarTema} />
+      <Header />
 
       <main>
         <Sobre />
