@@ -88,6 +88,18 @@ body {
   background: rgba(0, 0, 0, 0.2);
 }
 
+/* Botão de destaque do calendário */
+.menu a.botao-calendario {
+  background: var(--amarelo);
+  color: #222;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding: 6px 14px;
+}
+.menu a.botao-calendario:hover {
+  background: #ffd83d;
+}
+
 main {
   max-width: 900px;
   margin: 24px auto;
