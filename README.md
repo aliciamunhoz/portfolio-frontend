@@ -1,6 +1,6 @@
 # Portfolio Frontend
 
-Frontend em React + TypeScript + Vite para um portfólio com visual inspirado em Pokédex. A aplicação exibe uma apresentação pessoal, lista projetos vindos de uma API, permite filtrar por tags e alternar entre tema claro e escuro.
+Frontend em React + TypeScript + Vite para um portfólio com visual inspirado em Pokédex. A aplicação exibe uma apresentação pessoal, lista projetos com filtro por tags e um footer estilizado.
 
 ## Tecnologias
 
@@ -11,16 +11,14 @@ Frontend em React + TypeScript + Vite para um portfólio com visual inspirado em
 ## Funcionalidades
 
 - Layout em seções: Sobre, Projetos, Habilidades e Contato
-- Lista de projetos carregada da API
+- Lista de projetos definida em `src/data/projetos.ts`
 - Filtro de projetos por tags
-- Alternância entre tema claro e escuro com persistência no `localStorage`
-- Tratamento de erros ao buscar dados da API
+- Cards de projeto com links para repositório e demo
 
 ## Pré-requisitos
 
 - Node.js 18 ou superior
 - npm
-- Backend da API rodando localmente em `http://localhost:4000`
 
 ## Instalação
 
@@ -50,16 +48,18 @@ npm run build
 npm run preview
 ```
 
-## API
+## Adicionando projetos
 
-O frontend consome a rota `GET /api/projetos` para listar os projetos. Em desenvolvimento, o Vite faz proxy de `/api` para `http://localhost:4000`, evitando problemas de CORS.
+Para adicionar ou editar projetos, basta atualizar o array em `src/data/projetos.ts`. Cada projeto segue a interface `Projeto` definida em `src/types/projeto.ts`:
 
-Se quiser apontar para outro backend, defina a variável de ambiente `VITE_API_BASE_URL`.
-
-Exemplo:
-
-```bash
-VITE_API_BASE_URL=http://localhost:4000/
+```ts
+interface Projeto {
+  id: number
+  nome: string
+  descricao: string
+  tags: string[]
+  links: { label: string; url: string }[]
+}
 ```
 
 ## Estrutura do projeto
@@ -68,9 +68,19 @@ VITE_API_BASE_URL=http://localhost:4000/
 src/
   App.tsx
   main.tsx
+  index.css
   components/
-  hooks/
+    Contato.tsx
+    FiltroTags.tsx
+    Habilidades.tsx
+    Header.tsx
+    ProjetoCard.tsx
+    ProjetoList.tsx
+    Sobre.tsx
+  data/
+    projetos.ts
   pages/
-  services/
+    PortfolioPage.tsx
   types/
+    projeto.ts
 ```
