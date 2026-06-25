@@ -1,7 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import { Projeto } from '../types/projeto'
-import { listarProjetos } from '../services/projetoService'
-import { ApiError } from '../services/api'
+import { useMemo, useState } from 'react'
+import { projetos } from '../data/projetos'
 import { Header } from '../components/Header'
 import { Sobre } from '../components/Sobre'
 import { FiltroTags } from '../components/FiltroTags'
@@ -10,32 +8,17 @@ import { Habilidades } from '../components/Habilidades'
 import { Contato } from '../components/Contato'
 
 export function PortfolioPage() {
-  const [projetos, setProjetos] = useState<Projeto[]>([])
-  const [carregando, setCarregando] = useState(true)
-  const [erro, setErro] = useState<string | null>(null)
   const [tagAtiva, setTagAtiva] = useState<string | null>(null)
-
-  useEffect(() => {
-    console.log('Iniciando busca de projetos...')
-    listarProjetos()
-      .then(setProjetos)
-      .catch((e) => {
-        const mensagem =
-          e instanceof ApiError ? e.message : 'Erro inesperado.'
-        setErro(mensagem)
-      })
-      .finally(() => setCarregando(false))
-  }, [])
 
   const tags = useMemo(() => {
     const todas = projetos.flatMap((p) => p.tags)
     return [...new Set(todas)].sort()
-  }, [projetos])
+  }, [])
 
   const projetosFiltrados = useMemo(() => {
     if (tagAtiva === null) return projetos
     return projetos.filter((p) => p.tags.includes(tagAtiva))
-  }, [projetos, tagAtiva])
+  }, [tagAtiva])
 
   return (
     <>
@@ -46,20 +29,12 @@ export function PortfolioPage() {
 
         <section id="projetos" className="tela">
           <h2 className="titulo-secao">Projetos</h2>
-
-          {carregando && <p className="aviso">Carregando projetos...</p>}
-          {erro && <p className="aviso aviso-erro">{erro}</p>}
-
-          {!carregando && !erro && (
-            <>
-              <FiltroTags
-                tags={tags}
-                tagAtiva={tagAtiva}
-                onSelecionar={setTagAtiva}
-              />
-              <ProjetoList projetos={projetosFiltrados} />
-            </>
-          )}
+          <FiltroTags
+            tags={tags}
+            tagAtiva={tagAtiva}
+            onSelecionar={setTagAtiva}
+          />
+          <ProjetoList projetos={projetosFiltrados} />
         </section>
 
         <Habilidades />
@@ -67,7 +42,7 @@ export function PortfolioPage() {
       </main>
 
       <footer className="rodape">
-        <p>Feito com estilo Pokédex</p>
+        <p>Feito com 💙 estilo Pokédex</p>
       </footer>
     </>
   )
